@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column; /* Allow vertical stacking */
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Set a fixed width for the form */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            width: 300px; /* Match the width of the form */
+            margin-bottom: 15px; /* Space below the message */
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center; /* Center the text */
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="message">
+        <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <h1>Enter the OTP</h1>
+        <input type="text" name="otp" required placeholder="Enter your OTP">
+        <button type="submit">Verify OTP</button>
+    </form>
+    
+    <p>If you have not received the OTP, please check your email or try resending it.</p>
+</body>
+</html>
